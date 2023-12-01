@@ -1,0 +1,36 @@
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsString,
+  Matches,
+  MinLength,
+} from 'class-validator';
+
+const passwordRegEx =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+export class CreateUserDto {
+  @IsString()
+  @MinLength(2, { message: 'first Name must have atleast 2 characters.' })
+  @IsNotEmpty()
+  firstName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(2, { message: 'last Name must have atleast 2 characters.' })
+  lastName: string;
+
+  @IsNotEmpty()
+  @IsEmail({}, { message: 'Invalid email format.' })
+  email: string;
+
+  @IsNotEmpty()
+  @Matches(passwordRegEx, {
+    message: `Password must contain Minimum 8 and maximum 20 characters, 
+      at least one uppercase letter, 
+      one lowercase letter, 
+      one number and 
+      one special character`,
+  })
+  password: string;
+}
