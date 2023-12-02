@@ -12,6 +12,6 @@ export class UsersController {
   @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Request() req: any) {
-      return this.usersService.findOne(req.user.sub);
+      return this.usersService.findOne(req.user.sub,['client', 'client.photos']);
   }
 }

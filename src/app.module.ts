@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { ClientModule } from './client/client.module';
+import { PhotoModule } from './photo/photo.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -18,7 +20,9 @@ import { AuthModule } from './auth/auth.module';
       logging: true,
     }),
     UsersModule,
-    AuthModule],
+    AuthModule,
+    ClientModule,
+    PhotoModule],
   controllers: [AppController],
   providers: [AppService],
 })

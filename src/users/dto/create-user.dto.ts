@@ -4,7 +4,12 @@ import {
   IsString,
   Matches,
   MinLength,
+  ValidateNested,
+  ArrayMinSize,
+  IsArray,
 } from 'class-validator';
+import { Type } from 'class-transformer';
+import { Photo } from '../../photo/dto/photo.dto';
 
 const passwordRegEx =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -33,4 +38,10 @@ export class CreateUserDto {
       one special character`,
   })
   password: string;
+
+//   @IsArray()
+//   @ArrayMinSize(1, { message: 'At least 4 photos are required' })
+//   @ValidateNested({ each: true })
+//   @Type(() => Photo)
+//   readonly photos: Photo[];
 }
